@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+
+  config-server:
+    build: config-server
+    ports:
+      - 8888:8888
+
+  eureka-registry:
+    build: eureka-registry
+
+  zuul-gateway:
+    build: zuul-gateway
+
+  data-import-service:
+    build: data-import-service
+    ports:
+      - 6000:6000

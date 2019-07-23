@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /data-import-service
+  port: 6000
+
+# arangodb
+spring:
+  application:
+    name: data-import-service
+  data:
+    arangodb:
+      database: test
+      user: root
+      password: root123
+      hosts: 127.0.0.1:8529

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: eureka-registry
+  cloud:
+    config:
+      name: eureka-registry
+      uri: http://localhost:8888
+      fail-fast: true
+
+eureka:
+  instance:
+    #服务注册中心实例的主机名
+    hostname: localhost
+  client:
+    #是否检索服务
+    fetch-registry: false
+    #是否向服务注册中心注册自己
+    register-with-eureka: false

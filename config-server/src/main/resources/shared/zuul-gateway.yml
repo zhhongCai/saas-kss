@@ -1,0 +1,14 @@
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+    account-service:
+        path: /data-import-service/**
+        serviceId: data-import-service
+        stripPrefix: false
+        sensitiveHeaders:
+
+server:
+  port: 4000
