@@ -10,4 +10,4 @@ spring:
       database: test
       user: root
       password: root123
-      hosts: 127.0.0.1:8529
+      hosts: 10.112.164.121:8529

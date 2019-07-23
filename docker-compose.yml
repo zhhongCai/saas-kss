@@ -3,15 +3,17 @@ services:
 
   config-server:
 #    environment:
-    image: saas-kss/config-server
+    image: saas-kss_config-server
 #    restart: always
+    ports:
+      - 8888:8888
     logging:
       options:
         max-size: "10m"
         max-file: "10"
 
   eureka-registry:
-    image: saas-kss/eureka--registry
+    image: saas-kss_eureka-registry
 #    restart: always
     ports:
       - 8761:8761
@@ -21,7 +23,7 @@ services:
         max-file: "10"
 
   zuul-gateway:
-    image: saas-kss/zuul-gateway
+    image: saas-kss_zuul-gateway
 #    restart: always
 #    depends_on:
 #      config:
@@ -34,8 +36,10 @@ services:
         max-file: "10"
 
   data-import-service:
-    image: saas-kss/data-import-service
+    image: saas-kss_data-import-service
 #    restart: always
+    ports:
+      - 6000:6000
     logging:
       options:
         max-size: "10m"

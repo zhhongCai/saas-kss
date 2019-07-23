@@ -4,13 +4,13 @@ spring:
   cloud:
     config:
       name: eureka-registry
-      uri: http://localhost:8888
+      uri: http://10.112.164.121:8888
       fail-fast: true
 
 eureka:
   instance:
     #服务注册中心实例的主机名
-    hostname: localhost
+    hostname: 10.112.164.121
   client:
     #是否检索服务
     fetch-registry: false
