@@ -11,36 +11,67 @@ services:
       options:
         max-size: "10m"
         max-file: "10"
+    dns:
+      - 8.8.8.8
+    extra_hosts:
+      - "config-server:${CONFIG_SERVER}"
 
   eureka-registry:
     image: saas-kss_eureka-registry
 #    restart: always
+    depends_on:
+      - config-server
+    links:
+      - config-server
     ports:
       - 8761:8761
     logging:
       options:
         max-size: "10m"
         max-file: "10"
+    dns:
+      - 8.8.8.8
+    extra_hosts:
+      - "config-server:${CONFIG_SERVER}"
+      - "eureka-registry:${EUREKA_REGISTRY}"
 
   zuul-gateway:
     image: saas-kss_zuul-gateway
-#    restart: always
-#    depends_on:
-#      config:
-#        condition: service_healthy
+    depends_on:
+      - config-server
+      - eureka-registry
+    links:
+      - config-server
+      - eureka-registry
     ports:
       - 80:4000
     logging:
       options:
         max-size: "10m"
         max-file: "10"
+    dns:
+      - 8.8.8.8
+    extra_hosts:
+      - "config-server:${CONFIG_SERVER}"
+      - "eureka-registry:${EUREKA_REGISTRY}"
 
   data-import-service:
     image: saas-kss_data-import-service
 #    restart: always
+    depends_on:
+      - config-server
+      - eureka-registry
+    links:
+      - config-server
+      - eureka-registry
     ports:
       - 6000:6000
     logging:
       options:
         max-size: "10m"
         max-file: "10"
+    dns:
+      - 8.8.8.8
+    extra_hosts:
+      - "config-server:${CONFIG_SERVER}"
+      - "eureka-registry:${EUREKA_REGISTRY}"

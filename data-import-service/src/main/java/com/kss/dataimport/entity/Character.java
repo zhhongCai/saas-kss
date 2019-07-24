@@ -3,6 +3,7 @@ package com.kss.dataimport.entity;
 import com.arangodb.springframework.annotation.Document;
 import com.arangodb.springframework.annotation.HashIndex;
 import com.arangodb.springframework.annotation.Relations;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 
 import java.util.Collection;
@@ -19,6 +20,7 @@ public class Character {
 	private boolean alive;
 	private Integer age;
 
+	@JsonIgnore
 	@Relations(edges = com.kss.dataimport.entity.ChildOf.class, lazy = true)
 	private Collection<Character> childs;
 
