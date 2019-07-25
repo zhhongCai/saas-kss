@@ -11,3 +11,13 @@ spring:
       user: root
       password: root123
       hosts: arangodb:8529
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    sender:
+      type: web
+    base-url: http://zipkin:9411

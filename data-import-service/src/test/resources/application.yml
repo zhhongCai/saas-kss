@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /data-import-service
-  port: 6000
+  port: 8000
 
 # arangodb
 spring:

@@ -37,11 +37,19 @@ services:
     volumes:
       - /data/arangodb:/var/lib/arangodb3
 
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+    networks:
+      - saas-kss-nw
+
   zuul-gateway:
     image: saas-kss_zuul-gateway
     depends_on:
       - config-server
       - eureka-registry
+      - zipkin
     ports:
       - 80:4000
     logging:
@@ -58,6 +66,7 @@ services:
       - config-server
       - eureka-registry
       - arangodb
+      - zipkin
     ports:
       - 8000:8000
     logging:

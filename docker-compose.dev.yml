@@ -17,4 +17,4 @@ services:
   data-import-service:
     build: data-import-service
     ports:
-      - 6000:6000
+      - 8000:8000

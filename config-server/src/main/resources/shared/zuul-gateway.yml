@@ -12,3 +12,15 @@ zuul:
 
 server:
   port: 4000
+
+spring:
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    sender:
+      type: web
+    base-url: http://zipkin:9411

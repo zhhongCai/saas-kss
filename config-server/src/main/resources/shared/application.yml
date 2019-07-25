@@ -1,6 +1,7 @@
 logging:
   level:
-    org.springframework: INFO
+    org.springframework: DEBUG
+    io.zipkin: DEBUG
 
 eureka:
   instance:

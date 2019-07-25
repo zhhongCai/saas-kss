@@ -15,6 +15,15 @@ hosts
 127.0.0.1  config-server
 127.0.0.1  eureka-registry
 127.0.0.1  arangodb
+127.0.0.1  zipkin
+
+## 运行
+
+编译,制作docker镜像：
+./build.sh
+
+启动：
+./start_all.sh
 
 ## 文档
 
