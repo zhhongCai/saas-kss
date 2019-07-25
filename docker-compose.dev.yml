@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 services:
 
   config-server:
@@ -8,6 +8,8 @@ services:
 
   eureka-registry:
     build: eureka-registry
+    ports:
+      - 8761:8761
 
   zuul-gateway:
     build: zuul-gateway

@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 services:
 
   config-server:
@@ -11,17 +11,13 @@ services:
       options:
         max-size: "10m"
         max-file: "10"
-    dns:
-      - 8.8.8.8
-    extra_hosts:
-      - "config-server:${CONFIG_SERVER}"
+    networks:
+      - saas-kss-nw
 
   eureka-registry:
     image: saas-kss_eureka-registry
 #    restart: always
     depends_on:
-      - config-server
-    links:
       - config-server
     ports:
       - 8761:8761
@@ -29,18 +25,21 @@ services:
       options:
         max-size: "10m"
         max-file: "10"
-    dns:
-      - 8.8.8.8
-    extra_hosts:
-      - "config-server:${CONFIG_SERVER}"
-      - "eureka-registry:${EUREKA_REGISTRY}"
+    networks:
+      - saas-kss-nw
+
+  arangodb:
+    image: arangodb:3.4.7
+    ports:
+      - 8529:8529
+    networks:
+      - saas-kss-nw
+    volumes:
+      - /data/arangodb:/var/lib/arangodb3
 
   zuul-gateway:
     image: saas-kss_zuul-gateway
     depends_on:
-      - config-server
-      - eureka-registry
-    links:
       - config-server
       - eureka-registry
     ports:
@@ -49,11 +48,8 @@ services:
       options:
         max-size: "10m"
         max-file: "10"
-    dns:
-      - 8.8.8.8
-    extra_hosts:
-      - "config-server:${CONFIG_SERVER}"
-      - "eureka-registry:${EUREKA_REGISTRY}"
+    networks:
+      - saas-kss-nw
 
   data-import-service:
     image: saas-kss_data-import-service
@@ -61,17 +57,15 @@ services:
     depends_on:
       - config-server
       - eureka-registry
-    links:
-      - config-server
-      - eureka-registry
+      - arangodb
     ports:
-      - 6000:6000
+      - 8000:8000
     logging:
       options:
         max-size: "10m"
         max-file: "10"
-    dns:
-      - 8.8.8.8
-    extra_hosts:
-      - "config-server:${CONFIG_SERVER}"
-      - "eureka-registry:${EUREKA_REGISTRY}"
+    networks:
+      - saas-kss-nw
+
+networks:
+  saas-kss-nw:

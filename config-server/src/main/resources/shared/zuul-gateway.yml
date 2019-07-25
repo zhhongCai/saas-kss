@@ -3,8 +3,8 @@ zuul:
   host:
     connect-timeout-millis: 20000
     socket-timeout-millis: 20000
-
-    account-service:
+  routes:
+    data-import-service:
         path: /data-import-service/**
         serviceId: data-import-service
         stripPrefix: false
