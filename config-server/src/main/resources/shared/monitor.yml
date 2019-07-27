@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: /dataimport
+  port: 8100

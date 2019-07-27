@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: /turbine-stream-service
+  port: 8989

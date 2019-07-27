@@ -38,6 +38,8 @@
 		<module>eureka-registry</module>
 		<module>zuul-gateway</module>
 		<module>data-import-service</module>
+		<module>monitor</module>
+		<module>turbine-stream-service</module>
 	</modules>
 
 </project>

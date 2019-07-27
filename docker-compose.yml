@@ -44,6 +44,17 @@ services:
     networks:
       - saas-kss-nw
 
+  rabbitmq:
+    image: rabbitmq:3-management
+  #  restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
   zuul-gateway:
     image: saas-kss_zuul-gateway
     depends_on:
@@ -67,8 +78,39 @@ services:
       - eureka-registry
       - arangodb
       - zipkin
+      - rabbitmq
     ports:
       - 8000:8000
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    networks:
+      - saas-kss-nw
+
+  monitor:
+    image: saas-kss_monitor
+    #    restart: always
+    depends_on:
+      - config-server
+    ports:
+      - 8100:8100
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    networks:
+      - saas-kss-nw
+
+  turbine-stream-service:
+    image: saas-kss_turbine-stream-service
+    #    restart: always
+    depends_on:
+      - config-server
+      - eureka-registry
+      - rabbitmq
+    ports:
+      - 8989:8989
     logging:
       options:
         max-size: "10m"

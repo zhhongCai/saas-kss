@@ -18,3 +18,13 @@ services:
     build: data-import-service
     ports:
       - 8000:8000
+
+  monitor:
+    build: monitor
+    ports:
+      - 8100:8100
+
+  turbine-stream-service:
+    build: turbine-stream-service
+    ports:
+      - 8989:8989

@@ -21,3 +21,7 @@ spring:
     sender:
       type: web
     base-url: http://zipkin:9411
+
+feign:
+  hystrix:
+    enabled: true

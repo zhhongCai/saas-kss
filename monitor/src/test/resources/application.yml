@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path: /dataimport
+  port: 8100
+
+# arangodb
+spring:
+  application:
+    name: dataimport
